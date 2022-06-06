@@ -9,11 +9,11 @@ export default function ImageUploader() {
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         console.log(item)
-        axios.post('http://localhost:8093/image/add', item).then(response => {
-            console.log(response)
-        }).catch(error => {
-            console.log(error)
-        })
+        // axios.post('http://localhost:8093/image/add', item).then(response => {
+        //     console.log(response)
+        // }).catch(error => {
+        //     console.log(error)
+        // })
     }
 
     const getFiles = (files) => {
@@ -26,10 +26,7 @@ export default function ImageUploader() {
 
     return(
         <MDBContainer className="col-md-6">
-        {/*//     <img src='https://images.unsplash.com/photo-1623862334741-6822d5232389?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1476&q=80'*/}
-        {/*//          className='img-fluid shadow-4 mt-4'*/}
-        {/*//          alt='...'/>*/}
-            <form className='py-1' onSubmit={onSubmitHandler}>
+            <form id='add-purr' className='py-1' onSubmit={onSubmitHandler}>
                 <MDBInput wrapperClass='mb-4'
                           id="title"
                           label='Image Label'

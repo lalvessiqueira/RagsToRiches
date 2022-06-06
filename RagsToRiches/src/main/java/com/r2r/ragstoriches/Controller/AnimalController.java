@@ -30,4 +30,9 @@ public class AnimalController {
     public Animal insertPhotoToAnimal(@PathVariable String animalId, @RequestBody List<Photo> photos) {
         return animalService.addPhotoToAnimal(animalId, photos);
     }
+
+    @PostMapping("animal/insert-profile-image/{animalId}")
+    public Photo insertProfilePictureToAnimal(@PathVariable String animalId, @RequestBody Photo photo) {
+        return animalService.insertProfilePicture(animalId, photo);
+    }
 }
