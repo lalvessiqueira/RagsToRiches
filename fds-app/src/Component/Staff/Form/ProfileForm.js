@@ -50,7 +50,7 @@ export default function ProfileForm() {
                             />
                         </figure>
                         <ImageUploader/>
-                        <CompDivider/>
+                        <section className='d-flex justify-content-center justify-content-lg-between mb-3 border-bottom'></section>
                         <MDBRow>
                             <MDBCol>
                                 <MDBInput wrapperClass='mb-4'
@@ -70,16 +70,6 @@ export default function ProfileForm() {
                                           value={details.breed}
                                           onChange={(e) =>
                                               setDetails({...details, breed: e.target.value})}/>
-                            </MDBCol>
-                            <MDBCol>
-                                <MDBInput wrapperClass='mb-4'
-                                          id='weight'
-                                          label='Weight'
-                                          type='text'
-                                          name="weight"
-                                          value={details.weight}
-                                          onChange={(e) =>
-                                              setDetails({...details, weight: e.target.value})}/>
                             </MDBCol>
                         </MDBRow>
                         <MDBRow>
@@ -117,7 +107,7 @@ export default function ProfileForm() {
                                               setDetails({...details, age: e.target.value})}/>
                             </MDBCol>
                         </MDBRow>
-                        <CompDivider/>
+                        <section className='d-flex justify-content-center justify-content-lg-between mb-3 border-bottom'></section>
                         <MDBRow className="mb-2">
                             <MDBCol className="mb-2">
                                 <img
