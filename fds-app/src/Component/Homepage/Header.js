@@ -82,8 +82,9 @@ export default function Header() {
                     <img src={twitter} className='img-fluid pe-3' width={45} height={45} alt=''/>
                     <img src={facebook} className='img-fluid pe-3' width={45} height={45} alt=''/>
                     <div>
-                        <a href="/#">
-                            <img src={donation} className='img-fluid pe-3' width={65} height={65} alt=''/>
+                        <a href="/#" className="fw-bold">
+                            DONATE NOW
+                            {/*<img src={donation} className='img-fluid pe-3' width={65} height={65} alt=''/>*/}
                         </a>
                     </div>
                 </MDBCollapse>

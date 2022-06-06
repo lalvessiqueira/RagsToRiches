@@ -18,7 +18,7 @@ export default function ViewAnimals() {
                 {cats?.map(cat => <MDBCol className="mb-2">
                     <MDBCard style={{ width: '18rem' }}>
                         <MDBCardBody>
-                            <MDBCardTitle>{cat.name}</MDBCardTitle>
+                            <MDBCardTitle className="fw-bold">{cat.name}</MDBCardTitle>
                             <MDBCardImage src={cat.profilePicture} position='top' alt='...' className="mb-3"/>
                             <MDBCardText>
                                 <MDBListGroup flush style={{ minWidth: '12rem', backgroundColor: "whitesmoke" }}>
