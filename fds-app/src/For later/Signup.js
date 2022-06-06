@@ -6,6 +6,22 @@ export default function Signup({loginOrRegister}) {
         <MDBTabsPane show={loginOrRegister === 'register'}>
             <form>
                 <div className="mb-3">
+                    <input id="firstName"
+                           type="text"
+                           placeholder="First Name"
+                           required=""
+                           autoFocus=""
+                           className="form-control rounded-pill border-0 shadow-sm px-4"/>
+                </div>
+                <div className="mb-3">
+                    <input id="lastName"
+                           type="text"
+                           placeholder="Last Name"
+                           required=""
+                           autoFocus=""
+                           className="form-control rounded-pill border-0 shadow-sm px-4"/>
+                </div>
+                <div className="mb-3">
                     <input id="inputEmail"
                            type="email"
                            placeholder="Email address"
@@ -20,10 +36,10 @@ export default function Signup({loginOrRegister}) {
                            required=""
                            className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
                 </div>
-                <div className="form-check">
-                    <input id="customCheck1" type="checkbox" checked className="form-check-input"/>
-                    <label form="customCheck1" className="form-check-label">Remember password</label>
-                </div>
+                {/*<div className="form-check">*/}
+                {/*    <input id="customCheck1" type="checkbox" checked className="form-check-input"/>*/}
+                {/*    <label form="customCheck1" className="form-check-label">Remember password</label>*/}
+                {/*</div>*/}
                 <div className="d-grid gap-2 mt-2">
                     <button type="submit"
                             className="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Sign in

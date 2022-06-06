@@ -1,55 +1,36 @@
 import React, {useState} from 'react'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
-import Login from "./Component/Login";
-import Signup from "./Component/Signup";
-import {MDBTabs, MDBTabsItem, MDBTabsLink} from "mdb-react-ui-kit";
+import 'mdb-react-ui-kit/dist/css/mdb.min.css'
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Homepage from "./Component/Homepage/Homepage";
+import Header from "./Component/Homepage/Header"
+import axios from "axios";
+import Sidebar from "./Component/Homepage/Sidebar";
+import ProfileForm from "./Component/Staff/Form/ProfileForm";
+import ImageUploader from "./Component/Staff/Form/ImageUploader";
+import StaffNav from "./Component/Staff/NavBar/StaffNav";
+import ProfileCard from "./Component/Profile/ProfileCard";
+import LandingStaff from "./Component/Staff/Login/LandingStaff";
+import StaffDash from "./Component/Staff/StaffDashboard/StaffDash";
+
 function App() {
 
-    const [loginOrRegister, setLoginOrRegister] = useState('login');
-    const handleLoginOrRegister = (value: string) => {
-        if (value === loginOrRegister) {
-            return;
-        }
-        setLoginOrRegister(value);
-    };
+    const [isStaff, setIsStaff] = useState(false);
 
     return (
-
-        <div className="maintainer">
-            <div class="container-fluid">
-                <div class="row no-gutter">
-                    <div class="col-md-6 d-none d-md-flex bg-image"></div>
-                    <div class="col-md-6 bg-light">
-                        <div class="login d-flex align-items-center py-5">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-10 col-xl-7 mx-auto">
-                                        <h3 class="display-4">App title here</h3>
-                                        <p class="text-muted mb-4 text-center">Some text here</p>
-                                        <MDBTabs pills justify className='mb-3'>
-                                            <MDBTabsItem>
-                                                <MDBTabsLink onClick={() => handleLoginOrRegister('login')} active={loginOrRegister === 'login'}>
-                                                    LOGIN
-                                                </MDBTabsLink>
-                                            </MDBTabsItem>
-                                            <MDBTabsItem>
-                                                <MDBTabsLink onClick={() => handleLoginOrRegister('register')} active={loginOrRegister === 'register'}>
-                                                    REGISTER
-                                                </MDBTabsLink>
-                                            </MDBTabsItem>
-                                        </MDBTabs>
-                                        <Login loginOrRegister={loginOrRegister}/>
-                                        <Signup loginOrRegister={loginOrRegister}/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div style={{backgroundColor: "whitesmoke"}}>
+            <BrowserRouter>
+                {isStaff ? <Header/> : <StaffNav setIsStaff={setIsStaff}/>}
+                <Routes>
+                    <Route path="/" element={<Homepage setIsStaff={setIsStaff}/>}/>
+                    <Route path="/homepage" element={<ImageUploader/>}/>
+                    <Route path="/profileCard" element={<ProfileCard/>}/>
+                    <Route path='/view' element={<Sidebar/>}/>
+                    <Route path='/staff' element={<LandingStaff/>}/>
+                    <Route path='/staffDash' element={<StaffDash/>}/>
+                </Routes>
+            </BrowserRouter>
         </div>
     )
 }
