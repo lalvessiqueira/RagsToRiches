@@ -16,7 +16,6 @@ export default function ProfileForm() {
 
     const [details, setDetails] = useState(
         {
-            animalId: '',
             name : '',
             breed: '',
             sex: '',
@@ -25,7 +24,7 @@ export default function ProfileForm() {
         }
     );
 
-    const [profilePicture, setProfilePicture] = useState({title: "", image: ""});
+    const [profilePicture, setProfilePicture] = useState({title: "", image: ["https://genesisairway.com/wp-content/uploads/2019/05/no-image.jpg"]});
     const [item, setItem] = useState({ title: '', image: [] });
 
     const submitHandler = (e) =>{
@@ -33,13 +32,45 @@ export default function ProfileForm() {
         console.log(details)
         console.log(item)
         console.log(profilePicture)
-        // axios.post('http://localhost:8093/animals/add', details).then(response => {
-        //     console.log(response)
-        //     setDetails({...details, animalId: response.data.id})
-        //     // localStorage.setItem("animalId", response.data.id)
-        // }).catch(error => {
-        //     console.log(error)
-        // })
+        axios.post('http://localhost:8093/animals/add', details).then(response => {
+            console.log("animals/add - response")
+            console.log(response.data)
+            console.log(response.data.id)
+            axios.post("http://localhost:8093/animal/insert-profile-image/" + response.data.id, profilePicture).then(response => {
+                console.log("animals/insert-profile-image - response")
+                console.log(response)
+            }).catch(error => {
+                console.log("animals/insert-profile-image - error")
+                console.log(error)
+            })
+            axios.post("http://localhost:8093/animal/insert-image/"+ response.data.id, item).then(response => {
+                console.log("animals/insert-image - response")
+                console.log(response)
+            }).catch(error => {
+                console.log("animals/insert-image - error: " + response.data.id)
+                console.log(error)
+            })
+        }).catch(error => {
+            console.log("animals/insert-profile-image - error")
+            console.log(error)
+        })
+        setProfilePicture({title: "", image: ["https://genesisairway.com/wp-content/uploads/2019/05/no-image.jpg"]})
+        setItem({title: '', image: [] })
+        setDetails({
+            name : '',
+            breed: '',
+            sex: '',
+            age : '',
+            weight : ''
+        })
+    }
+
+    const getFilesProfile = (files) => {
+        let image_arr = [];
+        for (let i = 0; i < files.length; i++) {
+            image_arr.push(files[i].base64)
+        }
+        setProfilePicture({...profilePicture, image: image_arr })
     }
 
     const getFiles = (files) => {
@@ -58,7 +89,7 @@ export default function ProfileForm() {
                     <form id='add-purr' onSubmit={submitHandler} className='py-2'>
                         <figure className='figure' style={{ maxWidth: '22rem' }}>
                             <img
-                                src='https://mdbootstrap.com/img/new/standard/city/041.webp'
+                                src= {profilePicture.image[0]}
                                 className='figure-img img-fluid rounded shadow-3'
                                 alt='...'
                             />
@@ -76,8 +107,9 @@ export default function ProfileForm() {
                                 <FileBase64
                                     wrapperClass='mb-4 mt-4'
                                     type="image"
-                                    multiple={false}
-                                    onDone={({ base64 }) => setProfilePicture({ ...profilePicture, image: base64 })}
+                                    multiple={true}
+                                    onDone = {getFilesProfile.bind(this)}
+                                    // onDone={({ base64 }) => setProfilePicture({ ...profilePicture, image: base64 })}
                                 />
                                 <div className='mb-4'></div>
                         </MDBContainer>
@@ -145,42 +177,19 @@ export default function ProfileForm() {
                         <section className='d-flex justify-content-center justify-content-lg-between mb-3 border-bottom'></section>
 
                         <MDBRow className="mb-2">
-                            <MDBCol className="mb-2">
-                                <img
-                                    src='https://mdbootstrap.com/img/new/standard/city/041.webp'
-                                    className='img-thumbnail'
-                                    alt='...'
-                                    style={{ maxWidth: '14rem' }}
-                                />
-                            </MDBCol>
-                            <MDBCol className="mb-2">
-                                <img
-                                    src='https://mdbootstrap.com/img/new/standard/city/041.webp'
-                                    className='img-thumbnail'
-                                    alt='...'
-                                    style={{ maxWidth: '14rem' }}
-                                />
-                            </MDBCol>
-                            <MDBCol className="mb-2">
-                                <img
-                                    src='https://mdbootstrap.com/img/new/standard/city/041.webp'
-                                    className='img-thumbnail'
-                                    alt='...'
-                                    style={{ maxWidth: '14rem' }}
-                                />
-                            </MDBCol>
-                            <MDBCol className="mb-2">
-                                <img
-                                    src='https://mdbootstrap.com/img/new/standard/city/041.webp'
-                                    className='img-thumbnail'
-                                    alt='...'
-                                    style={{ maxWidth: '14rem' }}
-                                />
-                            </MDBCol>
+                            {item.image?.map(image =>
+                                <MDBCol className="mb-2">
+                                    <img
+                                        src= {image}
+                                        className='img-thumbnail'
+                                        alt='...'
+                                        style={{ maxWidth: '14rem' }}
+                                    />
+                                </MDBCol>
+                            )}
                         </MDBRow>
 
                         {/*Upload multiple images*/}
-                        {/*<ImageUploader/>*/}
                         <MDBContainer className="col-md-6">
                                 <MDBInput wrapperClass='mb-4'
                                           id="title"
@@ -194,7 +203,6 @@ export default function ProfileForm() {
                                     type="image"
                                     multiple={true}
                                     onDone = {getFiles.bind(this)}
-                                    // onDone={({ base64 }) => setItem({ ...item, image: base64 })}
                                 />
                                 <div className='mb-4'></div>
                         </MDBContainer>

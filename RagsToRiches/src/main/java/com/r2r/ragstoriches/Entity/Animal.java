@@ -13,7 +13,7 @@ import java.util.List;
 public class Animal {
 
     @Id
-    private String animalId;
+    private String id;
     @Field
     private String name;
     @Field
@@ -21,19 +21,19 @@ public class Animal {
     @Field
     private String sex;
     @Field
-    private double weight;
+    private String weight;
     @Field
-    private int age;
+    private String age;
     @Field
     private Photo profilePicture;
     @Field
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Photo> photos;
+    private Photo photos;
 
     public Animal() {
     }
 
-    public Animal(String name, String breed, String sex, double weight, int age) {
+    public Animal(String name, String breed, String sex, String weight, String age) {
         this.name = name;
         this.breed = breed;
         this.sex = sex;
@@ -41,23 +41,23 @@ public class Animal {
         this.age = age;
     }
 
-    public List<Photo> getPhoto() {
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
+    public Photo getPhotos() {
         return photos;
     }
-    public String getAnimalId() {
-        return animalId;
-    }
-    public void setAnimalId(String animalId) {
-        this.animalId = animalId;
+    public void setPhotos(Photo photos) {
+        this.photos = photos;
     }
     public Photo getProfilePicture() {
         return profilePicture;
     }
     public void setProfilePicture(Photo profilePicture) {
         this.profilePicture = profilePicture;
-    }
-    public void setPhoto(List<Photo> photos) {
-        this.photos = photos;
     }
     public void setName(String name) {
         this.name = name;
@@ -68,10 +68,10 @@ public class Animal {
     public void setSex(String sex) {
         this.sex = sex;
     }
-    public void setWeight(double weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
     public String getName() {
@@ -83,16 +83,16 @@ public class Animal {
     public String getSex() {
         return sex;
     }
-    public double getWeight() {
+    public String getWeight() {
         return weight;
     }
-    public int getAge() {
+    public String getAge() {
         return age;
     }
     @Override
     public String toString() {
         return "Animal{" +
-                "id='" + animalId + '\'' +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", breed='" + breed + '\'' +
                 ", sex='" + sex + '\'' +

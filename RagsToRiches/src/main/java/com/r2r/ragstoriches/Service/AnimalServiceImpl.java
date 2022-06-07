@@ -20,13 +20,11 @@ public class AnimalServiceImpl implements AnimalService{
     }
 
     @Override
-    public Animal addPhotoToAnimal(String animalId, List<Photo> photos) {
+    public Photo addPhotoToAnimal(String animalId, Photo photos) {
         Animal animal = animalRepository.getAnimalById(animalId);
-        for (Photo photo : photos) {
-            animal.getPhoto().add(photo);
-        }
+        animal.setPhotos(photos);
         animalRepository.save(animal);
-        return animal;
+        return photos;
     }
 
     @Override
@@ -39,7 +37,7 @@ public class AnimalServiceImpl implements AnimalService{
         animal.setBreed(updatedAnimal.getBreed());
         animal.setSex(updatedAnimal.getSex());
         animal.setWeight(updatedAnimal.getWeight());
-        animal.setPhoto(updatedAnimal.getPhoto());
+        animal.setPhotos(updatedAnimal.getPhotos());
 
         return animalRepository.save(animal);
     }
@@ -50,6 +48,11 @@ public class AnimalServiceImpl implements AnimalService{
         animal.setProfilePicture(profilePic);
         animalRepository.save(animal);
         return profilePic;
+    }
+
+    @Override
+    public void deleteAnimalById(String animalId) {
+        animalRepository.deleteById(animalId);
     }
 
     @Override
@@ -68,7 +71,7 @@ public class AnimalServiceImpl implements AnimalService{
     }
 
     @Override
-    public List<Animal> findByAge(int age) {
+    public List<Animal> findByAge(String age) {
         return animalRepository.getAnimalByAge(age);
     }
 
@@ -78,9 +81,11 @@ public class AnimalServiceImpl implements AnimalService{
     }
 
     @Override
-    public List<Animal> findByWeight(double weight) {
+    public List<Animal> findByWeight(String weight) {
         return animalRepository.getAnimalByWeight(weight);
     }
+
+
 
 
 }

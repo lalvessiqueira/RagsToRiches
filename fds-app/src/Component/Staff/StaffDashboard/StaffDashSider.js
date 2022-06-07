@@ -10,7 +10,7 @@ export default function StaffDashSideBar({setView}) {
     }
 
     return (
-        <div>
+        <div className="mb-3">
             <MDBCard id='bg-glass'>
                 <MDBCardBody>
                     <MDBCardTitle>

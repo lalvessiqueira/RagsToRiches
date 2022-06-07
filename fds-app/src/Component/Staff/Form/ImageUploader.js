@@ -9,11 +9,11 @@ export default function ImageUploader() {
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         console.log(item)
-        // axios.post('http://localhost:8093/image/add', item).then(response => {
-        //     console.log(response)
-        // }).catch(error => {
-        //     console.log(error)
-        // })
+        axios.post('http://localhost:8093/image/add', item).then(response => {
+            console.log(response)
+        }).catch(error => {
+            console.log(error)
+        })
     }
 
     const getFiles = (files) => {
@@ -42,9 +42,9 @@ export default function ImageUploader() {
                     // onDone={({ base64 }) => setItem({ ...item, image: base64 })}
                 />
                 <div className='mb-4'></div>
-                {/*<MDBBtn type='submit' className='mb-4'>*/}
-                {/*    Submit*/}
-                {/*</MDBBtn>*/}
+                <MDBBtn type='submit' className='mb-4'>
+                    Submit
+                </MDBBtn>
             </form>
         </MDBContainer>
 

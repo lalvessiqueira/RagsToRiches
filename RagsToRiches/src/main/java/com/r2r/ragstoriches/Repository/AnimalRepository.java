@@ -7,9 +7,9 @@ import java.util.List;
 @Repository
 public interface AnimalRepository extends MongoRepository<Animal, String> {
     List<Animal> getAnimalBySex(String sex);
-    List<Animal> getAnimalByAge (int age);
+    List<Animal> getAnimalByAge (String age);
     List<Animal> getAnimalByBreed(String breed);
-    List<Animal> getAnimalByWeight(double weight);
+    List<Animal> getAnimalByWeight(String weight);
     Animal getAnimalById(String id);
 
 }

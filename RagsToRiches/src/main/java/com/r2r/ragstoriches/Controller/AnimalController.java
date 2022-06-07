@@ -27,7 +27,7 @@ public class AnimalController {
     }
 
     @PostMapping("animal/insert-image/{animalId}")
-    public Animal insertPhotoToAnimal(@PathVariable String animalId, @RequestBody List<Photo> photos) {
+    public Photo insertPhotoToAnimal(@PathVariable String animalId, @RequestBody Photo photos) {
         return animalService.addPhotoToAnimal(animalId, photos);
     }
 
@@ -35,4 +35,20 @@ public class AnimalController {
     public Photo insertProfilePictureToAnimal(@PathVariable String animalId, @RequestBody Photo photo) {
         return animalService.insertProfilePicture(animalId, photo);
     }
+
+    @GetMapping("/animals/retrieve/{id}")
+    public Animal getAnimalById(@PathVariable String id) {
+        return animalService.findById(id);
+    }
+
+    @DeleteMapping("/animal/delete/{id}")
+    public void deleteAnimalById(@PathVariable String id) {
+        animalService.deleteAnimalById(id);
+    }
+
+    @PutMapping("/animal/update/{id}")
+    public Animal updateAnimalByID(@PathVariable String id, @RequestBody Animal newAnimal) {
+        return animalService.editAnimalProfile(id, newAnimal);
+    }
+
 }

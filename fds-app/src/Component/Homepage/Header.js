@@ -78,9 +78,9 @@ export default function Header() {
                             </MDBNavbarLink>
                         </MDBNavbarItem>
                     </MDBNavbarNav>
-                    <img src={instagram} className='img-fluid pe-3' width={50} height={50} alt=''/>
-                    <img src={twitter} className='img-fluid pe-3' width={45} height={45} alt=''/>
-                    <img src={facebook} className='img-fluid pe-3' width={45} height={45} alt=''/>
+                    <a href="https://www.instagram.com/rags_to_riches_animalrescue/"><img src={instagram} className='img-fluid pe-3' width={60} height={60} alt=''/></a>
+                    <a><img src={twitter} className='img-fluid pe-3' width={55} height={55} alt=''/></a>
+                    <a><img src={facebook} className='img-fluid pe-3' width={55} height={55} alt=''/></a>
                     <div>
                         <a href="/#" className="fw-bold">
                             DONATE NOW

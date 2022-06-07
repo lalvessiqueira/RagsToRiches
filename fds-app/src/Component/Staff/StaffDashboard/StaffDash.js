@@ -22,7 +22,7 @@ export default function StaffDash() {
                         </MDBCol>
                         <MDBCol md='8' className='col-example'>
                             {/*{ profileEmpty ? <ProfileWarning/> : ""}*/}
-                            { (view === '0') ?  <AnimalData/> : <AnimalFunctions view={view} /> }
+                            { (view === '0') ?  <AnimalData/> : <AnimalFunctions view={view} setView={setView}/> }
                         </MDBCol>
                     </MDBRow>
                 </sections>
