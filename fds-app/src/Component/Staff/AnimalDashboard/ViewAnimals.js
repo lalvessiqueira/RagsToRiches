@@ -16,6 +16,8 @@ import axios from "axios";
 export default function ViewAnimals({setView}) {
 
     const [animals, setAnimals] = useState([]);
+    const default_image = "https://genesisairway.com/wp-content/uploads/2019/05/no-image.jpg";
+
 
     useEffect(() => {
         fetchData();
@@ -54,7 +56,7 @@ export default function ViewAnimals({setView}) {
                             <SimpleImageSlider
                                 width={270}
                                 height={270}
-                                images={cat.photos.image}
+                                images={cat.photos?.image == null ? "" : cat.photos?.image}
                                 showBullets={true}
                                 showNavs={true}
                             />
