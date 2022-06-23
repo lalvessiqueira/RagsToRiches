@@ -12,33 +12,38 @@ import {
 import cats from "../AnimalList";
 import SimpleImageSlider from "react-simple-image-slider";
 import axios from "axios";
+import Spinner from "../../Add-Ons/Spinner";
 
 export default function ViewAnimals({setView}) {
 
     const [animals, setAnimals] = useState([]);
     const default_image = "https://genesisairway.com/wp-content/uploads/2019/05/no-image.jpg";
-
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         fetchData();
         console.log(animals)
     }, []);
 
-    const fetchData = () => {
+    const fetchData = async () => {
+        try {
         axios.get("http://localhost:8093/animals/retrieve")
             .then((response) => {
-                console.log(response.data)
                 setAnimals({animals : response.data})
+                setLoading(true);
             })
             .catch((error) => {
                 console.log(error)
             });
+        } catch (e) {
+            console.log(e);
+        }
+
     }
 
     const removeData = (animalId) => {
         axios.delete("http://localhost:8093/animal/delete/" + animalId)
             .then((response) => {
-                console.log(response.data)
                 fetchData();
             })
             .catch((error) => {
@@ -48,7 +53,7 @@ export default function ViewAnimals({setView}) {
 
     return (
         <MDBContainer>
-            <MDBRow className="mb-2">
+        {loading ? (<MDBRow className="mb-2">
                 {animals.animals?.map(cat => <MDBCol className="mb-2">
                     <MDBCard style={{ width: '20rem' }}>
                         <MDBCardBody>
@@ -77,7 +82,7 @@ export default function ViewAnimals({setView}) {
                         </MDBCardBody>
                     </MDBCard>
                 </MDBCol>)}
-            </MDBRow>
+            </MDBRow>) : (<Spinner/>) }
         </MDBContainer>
     )
 }

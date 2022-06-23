@@ -13,7 +13,9 @@ public interface AnimalService {
     List<Animal> findByWeight(String weight);
     Animal addNewAnimal(Animal animal);
     Photo addPhotoToAnimal(String animalId, Photo photos);
-    Animal editAnimalProfile(String animalId, Animal updatedAnimal);
+    Animal editAnimalInfo(String animalId, Animal updatedAnimal);
+    Photo editAnimalProfile(String animalId, Photo profilePic);
+    Photo editAnimalPhotos(String animalId, Photo photos);
     Photo insertProfilePicture(String animalId, Photo profilePic);
     void deleteAnimalById(String animalId);
 }

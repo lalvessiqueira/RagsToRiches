@@ -36,18 +36,19 @@ export default function ProfileForm() {
             console.log("animals/add - response")
             console.log(response.data)
             console.log(response.data.id)
+            let saveResponse = response.data
             axios.post("http://localhost:8093/animal/insert-profile-image/" + response.data.id, profilePicture).then(response => {
                 console.log("animals/insert-profile-image - response")
                 console.log(response)
+                axios.post("http://localhost:8093/animal/insert-image/"+ saveResponse.id, item).then(response => {
+                    console.log("animals/insert-image - response")
+                    console.log(response)
+                    }).catch(error => {
+                        console.log("animals/insert-image - error: " + saveResponse.id)
+                        console.log(error)
+                    })
             }).catch(error => {
                 console.log("animals/insert-profile-image - error")
-                console.log(error)
-            })
-            axios.post("http://localhost:8093/animal/insert-image/"+ response.data.id, item).then(response => {
-                console.log("animals/insert-image - response")
-                console.log(response)
-            }).catch(error => {
-                console.log("animals/insert-image - error: " + response.data.id)
                 console.log(error)
             })
         }).catch(error => {

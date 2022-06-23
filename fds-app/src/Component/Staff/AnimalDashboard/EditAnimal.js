@@ -9,17 +9,17 @@ import {
     MDBCol,
     MDBRow, MDBCardSubTitle, MDBCardLink, MDBListGroup, MDBListGroupItem, MDBInput, MDBBtn
 } from 'mdb-react-ui-kit';
-import cats from "../AnimalList";
-import SimpleImageSlider from "react-simple-image-slider";
 import axios from "axios";
 import FileBase64 from "react-file-base64";
-import ProfileForm from "../Form/ProfileForm";
+
 
 export default function EditAnimal() {
 
     const [animal, setAnimal] = useState("");
     const default_image = "https://genesisairway.com/wp-content/uploads/2019/05/no-image.jpg";
-
+    const [profilePicture, setProfilePicture] = useState("");
+    const [item, setItem] = useState("");
+    
     useEffect(() => {
         fetchData();
         // console.log(animal)
@@ -28,8 +28,10 @@ export default function EditAnimal() {
     const fetchData = () => {
         axios.get("http://localhost:8093/animals/retrieve/" + localStorage.getItem("id"))
             .then((response) => {
-                console.log(response.data)
+                // console.log(response.data)
+                setProfilePicture(response.data.profilePicture)
                 setAnimal(response.data)
+                setItem(response.data.photos)
             })
             .catch((error) => {
                 console.log(error)
@@ -39,26 +41,59 @@ export default function EditAnimal() {
     const submitHandler = (e) => {
         e.preventDefault();
         axios.put("http://localhost:8093/animal/update/" + localStorage.getItem("id"), animal).then(response => {
-            console.log(response)
-            console.log("Animal updated")
+                console.log(response)
+                let saveResponse = response.data
+                axios.post("http://localhost:8093/animal/insert-profile-image/" + response.data.id, profilePicture).then(response => {
+                    console.log("animals/insert-profile-image - response")
+                    console.log(response)
+                    axios.post("http://localhost:8093/animal/insert-image/"+ saveResponse.id, item).then(response => {
+                        console.log("animals/insert-image - response")
+                        console.log(response)
+                        }).catch(error => {
+                            console.log("animals/update/insert-image - error: " + saveResponse.id)
+                            console.log(error)
+                        })
+                }).catch(error => {
+                    console.log("animals/update/insert-profile-image - error")
+                    console.log(error)
+            })
+
         }).catch(error => {
             console.log(error)
-        })
+        })        
     }
 
+    const getFilesProfile = (files) => {
+        let image_arr = [];
+        for (let i = 0; i < files.length; i++) {
+            image_arr.push(files[i].base64)
+        }
+        setProfilePicture({...profilePicture, image: image_arr })
+    }
+
+    const getFiles = (files) => {
+        let image_arr = [];
+        for (let i = 0; i < files.length; i++) {
+            image_arr.push(files[i].base64)
+        }
+        setItem({...item, image: image_arr })
+    }
 
     return (
         <div>
-            <MDBBtn onClick={() => console.log(animal)}>Animal</MDBBtn>
+            <MDBBtn onClick={() => {
+                console.log(animal)
+                // console.log(profilePicture)
+                // console.log(item)
+                }}>Animal</MDBBtn>
             <MDBContainer className="mb-3">
                 <MDBCard className="profile-form">
                     <div className="p-3">
-                        <h3 className="text-uppercase">Create Purr profile</h3>
+                        <h3 className="text-uppercase">Edit Purr profile</h3>
                         <form id='add-purr' onSubmit={submitHandler} className='py-2'>
                             <figure className='figure' style={{ maxWidth: '22rem' }}>
                                 <img
-                                    // src= {animal.profilePicture == null ? animal.profilePicture?.image[0] : default_image}
-                                    src= {default_image}
+                                    src= {profilePicture == null ? default_image : profilePicture.image?.map((pic) => pic)}
                                     className='figure-img img-fluid rounded shadow-3'
                                     alt='...'
                                 />
@@ -70,15 +105,15 @@ export default function EditAnimal() {
                                           id="profileTitle"
                                           label='Image Tag'
                                           name="title"
-                                          // value={animal.profilePicture?.title}
-                                          // onChange={e => setAnimal({ ...animal.profilePicture, title: e.target.value })}
+                                          value={profilePicture == null ? "" : profilePicture?.title}
+                                          onChange={e => setProfilePicture({ ...profilePicture, title: e.target.value })}
                                 >
                                 </MDBInput>
                                 <FileBase64
                                     wrapperClass='mb-4 mt-4'
                                     type="image"
                                     multiple={true}
-                                    // onDone = {getFilesProfile.bind(this)}
+                                    onDone = {getFilesProfile.bind(this)}
                                     // onDone={({ base64 }) => setProfilePicture({ ...profilePicture, image: base64 })}
                                 />
                                 <div className='mb-4'></div>
@@ -148,26 +183,18 @@ export default function EditAnimal() {
 
                             <section className='d-flex justify-content-center justify-content-lg-between mb-3 border-bottom'></section>
 
-                            {/*<MDBRow className="mb-2">*/}
-                            {/*    {item.image?.map(image =>*/}
-                            {/*        <MDBCol className="mb-2">*/}
-                            {/*            <img*/}
-                            {/*                src= {image}*/}
-                            {/*                className='img-thumbnail'*/}
-                            {/*                alt='...'*/}
-                            {/*                style={{ maxWidth: '14rem' }}*/}
-                            {/*            />*/}
-                            {/*        </MDBCol>*/}
-                            {/*    )}*/}
-                            {/*</MDBRow>*/}
-
-                            {/*<SimpleImageSlider*/}
-                            {/*    width={270}*/}
-                            {/*    height={270}*/}
-                            {/*    images={animal.photos.image}*/}
-                            {/*    showBullets={true}*/}
-                            {/*    showNavs={true}*/}
-                            {/*/>*/}
+                            <MDBRow className="mb-2">
+                               {item.image?.map(image =>
+                                   <MDBCol className="mb-2">
+                                       <img
+                                           src= {image}
+                                           className='img-thumbnail'
+                                           alt='...'
+                                           style={{ maxWidth: '14rem' }}
+                                       />
+                                   </MDBCol>
+                               )}
+                            </MDBRow>
 
                             {/*Upload multiple images*/}
                             <MDBContainer className="col-md-6">
@@ -175,15 +202,15 @@ export default function EditAnimal() {
                                           id="title"
                                           label='Image Label'
                                           name="title"
-                                          // value={animal.photos.title}
-                                          // onChange={e => setAnimal({ ...animal.photos, title: e.target.value })}
+                                          value={item.title}
+                                          onChange={e => setItem({ ...item, title: e.target.value })}
                                 >
                                 </MDBInput>
                                 <FileBase64
                                     wrapperClass='mb-4 mt-4'
                                     type="image"
                                     multiple={true}
-                                    // onDone = {getFiles.bind(this)}
+                                    onDone = {getFiles.bind(this)}
                                 />
                                 <div className='mb-4'></div>
                             </MDBContainer>

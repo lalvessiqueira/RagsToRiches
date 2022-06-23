@@ -28,16 +28,13 @@ public class AnimalServiceImpl implements AnimalService{
     }
 
     @Override
-    public Animal editAnimalProfile(String animalId, Animal updatedAnimal) {
+    public Animal editAnimalInfo(String animalId, Animal updatedAnimal) {
         Animal animal = animalRepository.getAnimalById(animalId);
-
         animal.setName(updatedAnimal.getName());
         animal.setAge(updatedAnimal.getAge());
-        animal.setProfilePicture(updatedAnimal.getProfilePicture());
         animal.setBreed(updatedAnimal.getBreed());
         animal.setSex(updatedAnimal.getSex());
         animal.setWeight(updatedAnimal.getWeight());
-        animal.setPhotos(updatedAnimal.getPhotos());
 
         return animalRepository.save(animal);
     }
@@ -84,6 +81,8 @@ public class AnimalServiceImpl implements AnimalService{
     public List<Animal> findByWeight(String weight) {
         return animalRepository.getAnimalByWeight(weight);
     }
+
+  
 
 
 
