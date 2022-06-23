@@ -22,6 +22,7 @@ import instagram from "../../Icons/instagram.ico"
 import facebook from "../../Icons/facebook.ico"
 import twitter from "../../Icons/twitter.ico"
 import donation from "../../Icons/donation.ico"
+import tiktok from "../../Icons/tiktok.ico"
 
 export default function Header() {
     const [showBasic, setShowBasic] = useState(false);
@@ -79,7 +80,7 @@ export default function Header() {
                         </MDBNavbarItem>
                     </MDBNavbarNav>
                     <a href="https://www.instagram.com/rags_to_riches_animalrescue/"><img src={instagram} className='img-fluid pe-3' width={60} height={60} alt=''/></a>
-                    <a><img src={twitter} className='img-fluid pe-3' width={55} height={55} alt=''/></a>
+                    <a href="https://vm.tiktok.com/ZMNjmAwwW/"><img src={tiktok} className='img-fluid pe-3' width={55} height={55} alt=''/></a>
                     <a><img src={facebook} className='img-fluid pe-3' width={55} height={55} alt=''/></a>
                     <div>
                         <a href="/#" className="fw-bold">
@@ -98,11 +99,11 @@ export default function Header() {
                 <div className='mask' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>
                     <div className='d-flex justify-content-center align-items-center h-100'>
                         <div className='text-white'>
-                            <h2 className='mb-3'>The Prrr-fect</h2>
-                            <h1 className='mb-3 fw-bolder'>Pet</h1>
-                            <a className='btn btn-outline-light btn-lg' href='#!' role='button'>
-                                Adopt Now!
-                            </a>
+                            <h2 className='mb-3'>Help make a difference in a meaningful way!</h2>
+                            <h1 className='mb-3 fw-bolder'>The more you foster, the more we can save.</h1>
+                                <a className='btn btn-outline-light btn-lg' href='#!' role='button'>
+                                    Foster Now!
+                                </a>
                         </div>
                     </div>
                 </div>

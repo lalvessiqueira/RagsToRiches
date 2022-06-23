@@ -52,7 +52,7 @@ export default function ProfileForm() {
                 console.log(error)
             })
         }).catch(error => {
-            console.log("animals/insert-profile-image - error")
+            console.log("animals/add - error")
             console.log(error)
         })
         setProfilePicture({title: "", image: ["https://genesisairway.com/wp-content/uploads/2019/05/no-image.jpg"]})

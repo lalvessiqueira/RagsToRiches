@@ -11,14 +11,16 @@ import {
 } from 'mdb-react-ui-kit';
 import axios from "axios";
 import FileBase64 from "react-file-base64";
+import Loading from '../../Add-Ons/Loading';
 
 
 export default function EditAnimal() {
 
     const [animal, setAnimal] = useState("");
     const default_image = "https://genesisairway.com/wp-content/uploads/2019/05/no-image.jpg";
-    const [profilePicture, setProfilePicture] = useState("");
+    const [profilePicture, setProfilePicture] = useState({title: "", image: [default_image]});
     const [item, setItem] = useState("");
+    const [loading, setLoading] = useState(false)
     
     useEffect(() => {
         fetchData();
@@ -40,6 +42,7 @@ export default function EditAnimal() {
 
     const submitHandler = (e) => {
         e.preventDefault();
+        setLoading(true);
         axios.put("http://localhost:8093/animal/update/" + localStorage.getItem("id"), animal).then(response => {
                 console.log(response)
                 let saveResponse = response.data
@@ -57,10 +60,10 @@ export default function EditAnimal() {
                     console.log("animals/update/insert-profile-image - error")
                     console.log(error)
             })
-
+            setLoading(false)
         }).catch(error => {
             console.log(error)
-        })        
+        })      
     }
 
     const getFilesProfile = (files) => {
@@ -184,7 +187,7 @@ export default function EditAnimal() {
                             <section className='d-flex justify-content-center justify-content-lg-between mb-3 border-bottom'></section>
 
                             <MDBRow className="mb-2">
-                               {item.image?.map(image =>
+                               {item?.image?.map(image =>
                                    <MDBCol className="mb-2">
                                        <img
                                            src= {image}
@@ -202,7 +205,7 @@ export default function EditAnimal() {
                                           id="title"
                                           label='Image Label'
                                           name="title"
-                                          value={item.title}
+                                          value={item?.title == null ? "" : item?.title}
                                           onChange={e => setItem({ ...item, title: e.target.value })}
                                 >
                                 </MDBInput>
@@ -214,10 +217,10 @@ export default function EditAnimal() {
                                 />
                                 <div className='mb-4'></div>
                             </MDBContainer>
-
-                            <MDBBtn type='submit' form='add-purr' className='mb-4'>
-                                Submit
-                            </MDBBtn>
+                            {loading ? 
+                            <Loading/> : <MDBBtn type='submit' form='add-purr' className='mb-4'>
+                                            Submit
+                                        </MDBBtn>}
                         </form>
                     </div>
                 </MDBCard>
