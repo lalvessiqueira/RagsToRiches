@@ -35,8 +35,24 @@ public class AnimalServiceImpl implements AnimalService{
         animal.setBreed(updatedAnimal.getBreed());
         animal.setSex(updatedAnimal.getSex());
         animal.setWeight(updatedAnimal.getWeight());
-
+        
         return animalRepository.save(animal);
+    }
+
+    @Override
+    public Photo editAnimalProfile(String animalId, Photo profilePic) {
+        Animal animal = animalRepository.getAnimalById(animalId);
+        animal.setProfilePicture(profilePic);
+        animalRepository.save(animal);
+        return profilePic;
+    }
+
+    @Override
+    public Photo editAnimalPhotos(String animalId, Photo photos) {
+        Animal animal = animalRepository.getAnimalById(animalId);
+        animal.setPhotos(photos);
+        animalRepository.save(animal);
+        return photos;
     }
 
     @Override
@@ -81,10 +97,5 @@ public class AnimalServiceImpl implements AnimalService{
     public List<Animal> findByWeight(String weight) {
         return animalRepository.getAnimalByWeight(weight);
     }
-
-  
-
-
-
 
 }

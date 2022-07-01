@@ -48,7 +48,7 @@ public class AnimalController {
 
     @PutMapping("/animal/update/{id}")
     public Animal updateAnimalByID(@PathVariable String id, @RequestBody Animal newAnimal) {
-        return animalService.editAnimalProfile(id, newAnimal);
+        return animalService.editAnimalInfo(id, newAnimal);
     }
 
 }

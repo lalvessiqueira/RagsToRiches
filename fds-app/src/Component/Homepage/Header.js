@@ -17,80 +17,18 @@ import {
     MDBCollapse
 } from 'mdb-react-ui-kit';
 import dropdown from "../../Icons/menu.ico"
-import logo2 from "../../Icons/Rags to riches-PhotoRoom.png"
+import logo2 from "../../Icons/r2r.png"
 import instagram from "../../Icons/instagram.ico"
 import facebook from "../../Icons/facebook.ico"
-import twitter from "../../Icons/twitter.ico"
-import donation from "../../Icons/donation.ico"
 import tiktok from "../../Icons/tiktok.ico"
+import NavBar from './NavBar';
 
 export default function Header() {
     const [showBasic, setShowBasic] = useState(false);
 
     return (
         <header>
-        <MDBNavbar expand='lg' light sticky>
-            <MDBContainer fluid>
-                <MDBNavbarBrand href='#'>
-                    <img
-                        src={logo2}
-                        className='img-fluid'
-                        width={100}
-                        height={100}
-                        alt=''
-                    />
-                </MDBNavbarBrand>
-
-                <MDBNavbarToggler
-                    aria-controls='navbarSupportedContent'
-                    aria-expanded='false'
-                    aria-label='Toggle navigation'
-                    onClick={() => setShowBasic(!showBasic)}
-                >
-                    <img
-                        src={dropdown}
-                        className='img-fluid'
-                        width={50}
-                        height={50}
-                        alt=''
-                    />
-                </MDBNavbarToggler>
-
-                <MDBCollapse navbar show={showBasic}>
-                    <MDBNavbarNav className='mr-auto'>
-                        <MDBNavbarItem>
-                            <MDBNavbarLink active aria-current='page' href='#'>
-                                <h5>Home</h5>
-                            </MDBNavbarLink>
-                        </MDBNavbarItem>
-                        <MDBNavbarItem>
-                            <MDBNavbarLink active href='#'>
-                                <h5>About</h5>
-                            </MDBNavbarLink>
-                        </MDBNavbarItem>
-                        <MDBNavbarItem>
-                            <MDBNavbarLink active href='#'>
-                                <h5>How to Help</h5>
-                            </MDBNavbarLink>
-                        </MDBNavbarItem>
-                        <MDBNavbarItem>
-                            <MDBNavbarLink active href='#'>
-                                <h5>Adopt Now</h5>
-                            </MDBNavbarLink>
-                        </MDBNavbarItem>
-                    </MDBNavbarNav>
-                    <a href="https://www.instagram.com/rags_to_riches_animalrescue/"><img src={instagram} className='img-fluid pe-3' width={60} height={60} alt=''/></a>
-                    <a href="https://vm.tiktok.com/ZMNjmAwwW/"><img src={tiktok} className='img-fluid pe-3' width={55} height={55} alt=''/></a>
-                    <a><img src={facebook} className='img-fluid pe-3' width={55} height={55} alt=''/></a>
-                    <div>
-                        <a href="/#" className="fw-bold">
-                            DONATE NOW
-                            {/*<img src={donation} className='img-fluid pe-3' width={65} height={65} alt=''/>*/}
-                        </a>
-                    </div>
-                </MDBCollapse>
-            </MDBContainer>
-        </MDBNavbar>
+            <NavBar/>
             <div
                 className='p-5 text-center bg-image'
                 style={{ backgroundImage: "url('https://glamadelaide.com.au/wp-content/uploads/2021/09/s-cats-1000x563.jpeg')",
@@ -101,7 +39,7 @@ export default function Header() {
                         <div className='text-white'>
                             <h2 className='mb-3'>Help make a difference in a meaningful way!</h2>
                             <h1 className='mb-3 fw-bolder'>The more you foster, the more we can save.</h1>
-                                <a className='btn btn-outline-light btn-lg' href='#!' role='button'>
+                                <a className='btn btn-outline-light btn-lg' href='/fosterNow' role='button'>
                                     Foster Now!
                                 </a>
                         </div>

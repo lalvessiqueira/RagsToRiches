@@ -20,7 +20,7 @@ export default function StaffDashSideBar({setView}) {
                 <MDBListGroup flush>
                     <MDBListGroupItem><MDBCardLink href='#' onClick={()=>onButtonClick('1')}>View All Purr friends</MDBCardLink></MDBListGroupItem>
                     <MDBListGroupItem><MDBCardLink href='#' onClick={()=>onButtonClick('2')}>Add Purr friend</MDBCardLink></MDBListGroupItem>
-                    <MDBListGroupItem><MDBCardLink href='#' onClick={()=>onButtonClick('3')}>Edit Purr friend</MDBCardLink></MDBListGroupItem>
+                    {/* <MDBListGroupItem><MDBCardLink href='#' onClick={()=>onButtonClick('3')}>Edit Purr friend</MDBCardLink></MDBListGroupItem> */}
                 </MDBListGroup>
             </MDBCard>
         </div>

@@ -96,7 +96,8 @@ export default function EditAnimal() {
                         <form id='add-purr' onSubmit={submitHandler} className='py-2'>
                             <figure className='figure' style={{ maxWidth: '22rem' }}>
                                 <img
-                                    src= {profilePicture == null ? default_image : profilePicture.image?.map((pic) => pic)}
+                                    src= {profilePicture == null ? default_image : profilePicture?.image?.map((pic) => pic)}
+                                    // src= {default_image}
                                     className='figure-img img-fluid rounded shadow-3'
                                     alt='...'
                                 />
@@ -108,7 +109,7 @@ export default function EditAnimal() {
                                           id="profileTitle"
                                           label='Image Tag'
                                           name="title"
-                                          value={profilePicture == null ? "" : profilePicture?.title}
+                                          value={profilePicture?.title == null ? "" : profilePicture?.title}
                                           onChange={e => setProfilePicture({ ...profilePicture, title: e.target.value })}
                                 >
                                 </MDBInput>

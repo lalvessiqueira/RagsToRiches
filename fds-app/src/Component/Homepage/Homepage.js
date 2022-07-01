@@ -4,13 +4,15 @@ import Login from "../Staff/Login/Login";
 import Signup from "../Staff/Login/Signup";
 import About from "../About/About";
 import Footer from "./Footer";
+import Header from "./Header";
 
-function Homepage({setIsStaff}) {
+function Homepage() {
 
     return (
         <div>
+            <Header/>
             <About/>
-            <Footer setIsStaff={setIsStaff}/>
+            <Footer/>
         </div>
     )
 }

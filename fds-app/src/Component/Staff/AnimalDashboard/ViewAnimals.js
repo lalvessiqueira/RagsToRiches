@@ -25,8 +25,7 @@ export default function ViewAnimals({setView}) {
         console.log(animals)
     }, []);
 
-    const fetchData = async () => {
-        try {
+    const fetchData = () => {
         axios.get("http://localhost:8093/animals/retrieve")
             .then((response) => {
                 setAnimals({animals : response.data})
@@ -35,15 +34,13 @@ export default function ViewAnimals({setView}) {
             .catch((error) => {
                 console.log(error)
             });
-        } catch (e) {
-            console.log(e);
-        }
-
     }
 
     const removeData = (animalId) => {
         axios.delete("http://localhost:8093/animal/delete/" + animalId)
             .then((response) => {
+                console.log("removed")
+                setLoading(false)
                 fetchData();
             })
             .catch((error) => {

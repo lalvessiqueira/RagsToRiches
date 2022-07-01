@@ -6,7 +6,8 @@ import {
     MDBSwitch
 } from "mdb-react-ui-kit";
 import axios from "axios";
-import instagram from "../../../Icons/instagram.ico";
+import higiphy from "../../../Icons/hi.gif";
+
 
 class AnimalData extends Component {
     constructor(props) {
@@ -14,8 +15,11 @@ class AnimalData extends Component {
         this.state = {
             accounts: [],
             moreaccounts: [],
+            staffname: "Leticia"
         };
     }
+
+ 
 
     // componentDidMount() {
     //     axios.get("http://localhost:8081/api/customer/username/" + localStorage.getItem("username"))
@@ -31,8 +35,14 @@ class AnimalData extends Component {
     render() {
         return (
             <div>
-                <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                     className='img-fluid pe-3' alt=''/>
+            <h1>Welcome, {this.state.staffname}</h1>
+                <img 
+                    src={higiphy}
+                // src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                     className='img-fluid shadow-2-strong' 
+                     alt='' 
+                     style={{ maxWidth: '24rem' }}/>
+                
                 {/*{this.state.moreaccounts?.map(account =>*/}
                 {/*    <MDBContainer id='bg-glass' className='py-3 rounded-5 col-10 my-3'>*/}
                 {/*        /!*<h1>HEY</h1>*!/*/}

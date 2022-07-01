@@ -13,6 +13,7 @@ import StaffNav from "./Component/Staff/NavBar/StaffNav";
 import ProfileCard from "./Component/Profile/ProfileCard";
 import LandingStaff from "./Component/Staff/Login/LandingStaff";
 import StaffDash from "./Component/Staff/StaffDashboard/StaffDash";
+import FosterNow from "./Component/Foster/FosterNow"
 
 function App() {
 
@@ -21,14 +22,14 @@ function App() {
     return (
         <div style={{backgroundColor: "whitesmoke"}}>
             <BrowserRouter>
-                {isStaff ? <Header/> : <StaffNav setIsStaff={setIsStaff}/>}
                 <Routes>
-                    <Route path="/" element={<Homepage setIsStaff={setIsStaff}/>}/>
-                    <Route path="/homepage" element={<ImageUploader/>}/>
+                {/* <Route path="/" element={<ImageUploader/>}/> */}
+                    <Route path="/" element={<Homepage/>}/>
                     <Route path="/profileCard" element={<ProfileCard/>}/>
                     <Route path='/view' element={<Sidebar/>}/>
                     <Route path='/staff' element={<LandingStaff/>}/>
                     <Route path='/staffDash' element={<StaffDash/>}/>
+                    <Route path='/fosterNow' element={<FosterNow/>}/>
                 </Routes>
             </BrowserRouter>
         </div>

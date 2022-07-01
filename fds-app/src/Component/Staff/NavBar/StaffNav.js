@@ -17,13 +17,13 @@ import {
     MDBCollapse
 } from 'mdb-react-ui-kit';
 import dropdown from "../../../Icons/menu.ico"
-import logo2 from "../../../Icons/Rags to riches-PhotoRoom.png"
+import logo2 from "../../../Icons/r2r.png"
 import instagram from "../../../Icons/instagram.ico"
 import facebook from "../../../Icons/facebook.ico"
 import twitter from "../../../Icons/twitter.ico"
 import home from "../../../Icons/home.ico"
 
-export default function StaffNav({setIsStaff}) {
+export default function StaffNav() {
     const [showBasic, setShowBasic] = useState(false);
 
     return (
@@ -57,25 +57,10 @@ export default function StaffNav({setIsStaff}) {
 
                     <MDBCollapse navbar show={showBasic}>
                         <MDBNavbarNav className='mr-auto'>
-                            <MDBNavbarItem>
-                                <MDBNavbarLink active aria-current='page' href='#'>
-                                    <h5>Dashboard</h5>
-                                </MDBNavbarLink>
-                            </MDBNavbarItem>
-                            <MDBNavbarItem>
-                                <MDBNavbarLink active aria-current='page' href='#'>
-                                    <h5>Add Purr</h5>
-                                </MDBNavbarLink>
-                            </MDBNavbarItem>
-                            <MDBNavbarItem>
-                                <MDBNavbarLink active aria-current='page' href='#'>
-                                    <h5>Edit Purr</h5>
-                                </MDBNavbarLink>
-                            </MDBNavbarItem>
 
                         </MDBNavbarNav>
                         <div>
-                            <a href="/" onClick={setIsStaff(false)}>
+                            <a href="/">
                                 <img src={home} className='img-fluid pe-3' width={50} height={50} alt=''/>
                             </a>
                         </div>

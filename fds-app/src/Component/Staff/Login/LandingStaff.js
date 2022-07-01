@@ -6,7 +6,7 @@ import Signup from "./Signup";
 export default function LandingStaff() {
 
     const [loginOrRegister, setLoginOrRegister] = useState('login');
-    const handleLoginOrRegister = (value: string) => {
+    const handleLoginOrRegister = (value) => {
         if (value === loginOrRegister) {
             return;
         }

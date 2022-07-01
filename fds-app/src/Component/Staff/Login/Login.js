@@ -6,12 +6,12 @@ import {
 export default function Login({loginOrRegister}) {
 
     // const [loginOrRegister, setLoginOrRegister] = useState('login');
-    // const handleLoginOrRegister = (value: string) => {
-    //     if (value === loginOrRegister) {
-    //         return;
-    //     }
-    //     setLoginOrRegister(value);
-    // };
+    const handleClick = (e) => {
+        e.preventDefault();
+        console.log("clicked");
+        window.location.href = "/staffDash";
+    };
+
         return (
             <MDBTabsPane show={loginOrRegister === 'login'}>
             <form>
@@ -35,7 +35,10 @@ export default function Login({loginOrRegister}) {
                     <label form="customCheck1" className="form-check-label">Remember password</label>
                 </div>
                 <div className="d-grid gap-2 mt-2">
-                    <button type="submit" onClick={window.location.href = "/staffDash"}
+                    <button type="submit" 
+                            onClick={handleClick}
+                            // onClick={window.location.href = "/staffDash"}
+
                             className="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Sign in
                     </button>
                 </div>

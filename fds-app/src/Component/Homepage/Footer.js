@@ -1,7 +1,7 @@
 import React from 'react';
 import { MDBFooter } from 'mdb-react-ui-kit';
 
-export default function Footer({setIsStaff}) {
+export default function Footer() {
     return (
         <MDBFooter bgColor='light' className='text-center text-lg-start text-muted'>
             <section className='d-flex justify-content-center justify-content-lg-between p-4 border-bottom'>
@@ -44,7 +44,7 @@ export default function Footer({setIsStaff}) {
                         <div className='col-md-3 col-lg-2 col-xl-2 mx-auto mb-4'>
                             <h6 className='text-uppercase fw-bold mb-4'>Staff Room</h6>
                             <p>
-                                <a href='/staff' className='text-reset' onClick={setIsStaff(true)}>
+                                <a href='/staff' className='text-reset'>
                                     Staff login
                                 </a>
                             </p>
