@@ -23,9 +23,13 @@ import facebook from "../../../Icons/facebook.ico"
 import twitter from "../../../Icons/twitter.ico"
 import home from "../../../Icons/home.ico"
 
-export default function StaffNav() {
+export default function StaffNav({setView}) {
     const [showBasic, setShowBasic] = useState(false);
-
+    
+    const onButtonClick = (view) => {
+        setView(view)
+    }
+    
     return (
         <header>
             <MDBNavbar expand='lg nav-color' light sticky>
@@ -57,6 +61,15 @@ export default function StaffNav() {
 
                     <MDBCollapse navbar show={showBasic}>
                         <MDBNavbarNav className='mr-auto'>
+                            <MDBNavbarItem>
+                                <MDBNavbarLink 
+                                active 
+                                aria-current='page'
+                                href='#'
+                                onClick={()=>onButtonClick('1')}>
+                                    <h5>View All Purr friend</h5>
+                                </MDBNavbarLink>
+                            </MDBNavbarItem>
 
                         </MDBNavbarNav>
                         <div>

@@ -12,7 +12,7 @@ export default function StaffDash() {
 
     return (
         <div>
-            <StaffNav/>
+            <StaffNav setView={setView}/>
             <div className="container mt-5">
                 <div className="row">
                 </div>
