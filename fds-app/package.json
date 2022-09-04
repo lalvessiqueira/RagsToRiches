@@ -22,9 +22,8 @@
     "web-vitals": "^2.1.4"
   },
   "engines": {
-    "node": ">=8",
-    "npm": ">=6",
-    "yarn": ">=1"
+    "node": "16.17.0",
+    "npm": "8.15.0"
   },
   "scripts": {
     "start": "react-scripts start",
